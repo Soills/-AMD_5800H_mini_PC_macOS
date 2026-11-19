@@ -68,6 +68,8 @@ docs/
   WIFI.md
   TROUBLESHOOTING.md
   KEXTS.md
+  DOWNLOADS.md
+  REFERENCES.md
   CHANGELOG.md
 tools/
   MonitorControl.4.4.0.dmg
@@ -140,6 +142,16 @@ tools/MonitorControl.4.4.0.dmg
 ## ARM64 应用
 
 本机是 AMD x86_64，不能运行 arm64 macOS 应用。Rosetta 只解决 Apple Silicon 运行 x86_64，不能反向运行 ARM。
+
+## 系统镜像
+
+本仓库**不包含** macOS 系统镜像、BaseSystem.dmg、R-Drive 恢复镜像或商业恢复软件。
+
+系统和工具下载链接集中在 [docs/DOWNLOADS.md](docs/DOWNLOADS.md)。
+
+## 参考 GitHub
+
+完整依赖和参考项目见 [docs/REFERENCES.md](docs/REFERENCES.md)。
 
 ## 参考与来源
 
