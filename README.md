@@ -1,5 +1,9 @@
 ﻿# MoreFine S500+ AMD Cezanne Hackintosh
 
+[中文](#中文) | [English](#english)
+
+## 中文
+
 适用于 **MoreFine S500+ AMD 迷你主机** 的 OpenCore EFI，当前验证系统为 **macOS Sequoia 15.6 (24G84)**。
 
 这个仓库不是万能 EFI，而是针对下面这台机器的实际配置整理：
@@ -10,7 +14,7 @@
 | --- | --- |
 | 主机 | MoreFine S500+ / DEFAULT MOREFINE S500+ |
 | BIOS | S013_V1.2_P3C3M43_MoreFine / UEFI / Secure Boot Disabled |
-| CPU | AMD Ryzen 7 5800H（ES OPN 100-000000295-40_Y）/ Cezanne / 8 核 16 线程 |
+| CPU | AMD Ryzen 7 5800H（本机为 ES OPN 100-000000295-40_Y）/ Cezanne / 8 核 16 线程 |
 | 核显 | AMD Radeon Graphics / 1002:1638 / Cezanne |
 | 硬盘 | KINGSTON SNV2S500G / NVMe / 控制器 2646:5019 |
 | 有线网卡 1 | Realtek RTL8125 2.5GbE / 10EC:8125 |
@@ -38,7 +42,6 @@
 | 自动启动 | ✅ 5 秒超时，Ctrl+Enter 设置默认项 |
 | 外接显示器亮度 | ⚠️ 用 MonitorControl / 显示器 OSD |
 | 睡眠 / 唤醒 | ⚠️ 未做长期验证 |
-| ARM64 应用 | ❌ x86_64 平台无法运行 arm64 macOS 应用 |
 
 ## EFI 版本
 
@@ -173,4 +176,105 @@ tools/MonitorControl.4.4.0.dmg
 - 仓库不包含 macOS BaseSystem、R-Drive 镜像或商业恢复软件。
 - 发布前请再次确认 `config.plist` 没有个人序列号。
 - 配置已通过 OpenCore 1.0.8 `ocvalidate` 检查。
+
+
+---
+
+## English
+
+OpenCore EFI for the **MoreFine S500+ AMD mini PC**, validated on **macOS Sequoia 15.6 (24G84)**.
+
+This is not a universal EFI. It is tailored to the hardware below.
+
+### Hardware
+
+| Item | Details |
+| --- | --- |
+| Model | MoreFine S500+ / DEFAULT MOREFINE S500+ |
+| BIOS | S013_V1.2_P3C3M43_MoreFine / UEFI / Secure Boot Disabled |
+| CPU | AMD Ryzen 7 5800H (ES OPN 100-000000295-40_Y) / Cezanne / 8C 16T |
+| iGPU | AMD Radeon Graphics / 1002:1638 / Cezanne |
+| Storage | KINGSTON SNV2S500G / NVMe / controller 2646:5019 |
+| Ethernet 1 | Realtek RTL8125 2.5GbE / 10EC:8125 |
+| Ethernet 2 | Realtek RTL8111 GbE / 10EC:8168 |
+| Wi-Fi | Intel AC 8265 / 8086:24FD |
+| Bluetooth | Intel Bluetooth / 8087:0A2B |
+| Audio | Realtek ALC269 / 10EC:0269 / AMD HDA 1022:15E3 |
+| Display | S-2450QPC / DP / 2560x1440 |
+| SMBIOS | iMacPro1,1 with -no_compat_check |
+
+Original Windows hardware report: `docs/Report.json`.
+
+### Status
+
+| Feature | Status |
+| --- | --- |
+| iGPU / Metal | ✅ NootedRed 0.8.10, Metal 3 |
+| Ethernet | ✅ RTL8111 + RTL8125 |
+| Wi-Fi | ✅ AirportItlwm 2.4.0, interface en2 |
+| Bluetooth | ✅ IntelBluetoothFirmware / IntelBTPatcher / BlueToolFixup |
+| Audio | ✅ AppleALC, layout-id=58 |
+| NVMe | ✅ NVMeFix |
+| USB | ✅ MyDevicesFake port map |
+| Graphical picker | ✅ OpenCanopy + Acidanthera GoldenGate |
+| Auto boot | ✅ 5-second timeout, Ctrl+Enter sets default |
+| External brightness | ⚠️ Use MonitorControl / monitor OSD |
+| Sleep / wake | ⚠️ Not long-term validated |
+
+### EFI
+
+- OpenCore 1.0.8 RELEASE
+- macOS Sequoia 15.6 / Darwin 24.6.0
+- SMBIOS: `iMacPro1,1`
+- Boot args: `-v debug=0x100 keepsyms=1 -NRedDPDelay alcid=58`
+- Kext versions: `docs/KEXTS.md`
+
+### Quick start
+
+1. Prepare a GPT + FAT32 USB drive.
+2. Copy the `EFI` folder to the USB root.
+3. Disable Secure Boot and CSM, enable Above 4G Decoding, disable Resizable BAR.
+4. Boot the USB in UEFI mode and open OpenCore.
+5. Install macOS Sequoia 15.6 or boot the existing system.
+
+For an internal-disk installation, copy `EFI` to the internal ESP after restoring/installing macOS, then select the internal UEFI boot entry.
+
+### SMBIOS
+
+The repository `config.plist` has these fields intentionally blank:
+
+```text
+SystemSerialNumber
+MLB
+SystemUUID
+ROM
+```
+
+Generate your own values with GenSMBIOS (`iMacPro1,1`) and set `ROM` to the 6-byte en0 MAC address. Do not commit personal SMBIOS data.
+
+### Wi-Fi
+
+The working setup requires all three:
+
+- AirportItlwm 2.4.0 (Ersiter/Eric-AirportItlwm Sequoia build)
+- `SSDT-AXPWR.aml`
+- GPP4 `_PS0/_PS3` and `D00C _ADR` DSDT patches
+
+Without the GPP4 power patches the kext may load but no `en2` interface appears. HeliPort is not required.
+
+### External display brightness
+
+Install `tools/MonitorControl.4.4.0.dmg` for DDC/CI brightness control. If DDC is unsupported, use the monitor OSD.
+
+### ARM64 apps
+
+This is an AMD x86_64 machine. arm64 macOS applications cannot run here. Rosetta only enables x86_64 on Apple Silicon, not the reverse.
+
+### System images
+
+This repository does **not** contain macOS images, BaseSystem.dmg, R-Drive images, or commercial recovery software. See [docs/DOWNLOADS.md](docs/DOWNLOADS.md) for download links.
+
+### References
+
+See [docs/REFERENCES.md](docs/REFERENCES.md). Third-party kexts and binaries retain their original licenses. The documentation and configuration organization in this repository are MIT licensed.
 
