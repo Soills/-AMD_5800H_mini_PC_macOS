@@ -2262,7 +2262,7 @@
 				<key>revcpu</key>
 				<integer>1</integer>
 				<key>revcpuname</key>
-				<string>AMD Ryzen 9 5900HX</string>
+				<string>AMD Ryzen 7 5800H with Radeon Graphics</string>
 				<key>revpatch</key>
 				<string>sbvmm,cpuname</string>
 				<key>rtc-blacklist</key>

@@ -2,6 +2,8 @@
 
 ## 2026-11-19
 
+- 确认 CPU 为 AMD Ryzen 7 5800H（ES OPN 100-000000295-40_Y），更新配置和文档。
+
 - 更新 OpenCore 1.0.8 EFI。
 - 恢复 OpenCanopy + GoldenGate 图形启动菜单。
 - 自动启动超时设为 5 秒。

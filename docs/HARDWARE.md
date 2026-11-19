@@ -12,9 +12,12 @@
 
 ## CPU
 
-- 名称：AMD Eng Sample: 100-000000295-40_Y
+- 名称：AMD Ryzen 7 5800H
+- 工程样品 OPN：100-000000295-40_Y
 - 代号：Cezanne
 - 核心：8 核 16 线程
+
+> Report.json 中显示的是工程样品名称；用户确认实际型号归属为 Ryzen 7 5800H。
 - SIMD：SSE / SSE2 / SSE3 / SSSE3 / SSE4.1 / SSE4.2 / SSE4a / AVX / AVX2
 
 ## 显卡

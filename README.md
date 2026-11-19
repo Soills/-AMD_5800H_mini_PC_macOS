@@ -10,7 +10,7 @@
 | --- | --- |
 | 主机 | MoreFine S500+ / DEFAULT MOREFINE S500+ |
 | BIOS | S013_V1.2_P3C3M43_MoreFine / UEFI / Secure Boot Disabled |
-| CPU | AMD Eng Sample 100-000000295-40_Y / Cezanne / 8 核 16 线程 |
+| CPU | AMD Ryzen 7 5800H（ES OPN 100-000000295-40_Y）/ Cezanne / 8 核 16 线程 |
 | 核显 | AMD Radeon Graphics / 1002:1638 / Cezanne |
 | 硬盘 | KINGSTON SNV2S500G / NVMe / 控制器 2646:5019 |
 | 有线网卡 1 | Realtek RTL8125 2.5GbE / 10EC:8125 |
