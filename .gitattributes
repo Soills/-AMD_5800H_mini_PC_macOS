@@ -1,0 +1,10 @@
+﻿*.plist text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+*.aml binary
+*.efi binary
+*.dmg binary
+*.icns binary
+*.png binary
+*.bin binary
+EFI/OC/Kexts/**/Contents/MacOS/* binary
