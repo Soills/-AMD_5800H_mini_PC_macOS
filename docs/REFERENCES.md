@@ -34,7 +34,7 @@
 
 ## Wi-Fi / 蓝牙
 
-- https://github.com/luochenw/deepseek-harness-macos
+- https://github.com/Ersiter/Eric-AirportItlwm
   - 本仓库使用的 Sequoia AirportItlwm 2.4.0 来源
 - https://github.com/OpenIntelWireless/itlwm
   - Intel Wi-Fi 项目上游
@@ -59,10 +59,3 @@
   - OpenCore 安装和排错指南
 - https://github.com/dortania/Getting-Started-With-ACPI
   - ACPI / SSDT 参考资料
-
-## DSH（可选）
-
-- https://github.com/deepseek-ai/deepseek-harness
-- https://github.com/luochenw/deepseek-harness-macos
-
-
