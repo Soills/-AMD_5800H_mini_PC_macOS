@@ -7,6 +7,14 @@
 适用于 **MoreFine S500+ AMD 迷你主机** 的 OpenCore EFI，当前验证系统为 **macOS Sequoia 15.6 (24G84)**。
 
 这个仓库不是万能 EFI，而是针对下面这台机器的实际配置整理：
+!!使用者需要自己生成：
+
+- 使用 GenSMBIOS 选择 `iMacPro1,1`
+- 生成 Serial / MLB / UUID
+- `ROM` 填有线网卡 en0 的 6 字节 MAC
+- 填回 `PlatformInfo -> Generic`
+
+没有三码时系统一般仍可启动，但 iMessage、FaceTime、App Store 等服务不要依赖。
 
 ## 硬件配置
 
@@ -104,7 +112,7 @@ SystemUUID
 ROM
 ```
 
-发布到 GitHub 前不要把个人三码写回去。使用者需要自己生成：
+!!使用者需要自己生成：
 
 - 使用 GenSMBIOS 选择 `iMacPro1,1`
 - 生成 Serial / MLB / UUID
@@ -183,6 +191,18 @@ tools/MonitorControl.4.4.0.dmg
 ## English
 
 OpenCore EFI for the **MoreFine S500+ AMD mini PC**, validated on **macOS Sequoia 15.6 (24G84)**.
+### SMBIOS
+
+
+
+```text
+SystemSerialNumber
+MLB
+SystemUUID
+ROM
+```
+
+Generate your own values with GenSMBIOS (`iMacPro1,1`) and set `ROM` to the 6-byte en0 MAC address. Do not commit personal SMBIOS data.
 
 This is not a universal EFI. It is tailored to the hardware below.
 
@@ -241,7 +261,7 @@ For an internal-disk installation, copy `EFI` to the internal ESP after restorin
 
 ### SMBIOS
 
-The repository `config.plist` has these fields intentionally blank:
+
 
 ```text
 SystemSerialNumber
